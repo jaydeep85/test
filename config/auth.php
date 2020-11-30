@@ -38,12 +38,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'students',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'students',
             'hash' => false,
         ],
     ],
@@ -66,9 +66,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'students' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Student::class,
         ],
 
         // 'users' => [
