@@ -31,7 +31,7 @@ Route::post('login', [LoginController::class, 'authenticate']);
 
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('forget-password', 'Auth\ForgotPasswordController@getEmail')->name('getmail');
+
 
 use App\Http\Controllers\StudentController;
 
@@ -39,3 +39,13 @@ Route::group(['middleware' => ['auth']], function() {
 Route::get('welcome', [StudentController::class, 'welcome'])->name('welcome');
 
 });
+
+use App\Http\Controllers\ForgotPasswordController;
+
+Route::get('forget-password', [ForgotPasswordController::class, 'getEmail'])->name('getmail');
+Route::post('forget-password', [ForgotPasswordController::class, 'postEmail'])->name('sendmail');
+
+use App\Http\Controllers\ResetPasswordController;
+
+Route::get('reset-password/{token}', [ResetPasswordController::class, 'getPassword'])->name('resetlink');
+Route::post('reset-password', [ResetPasswordController::class, 'updatePassword'])->name('resetpassword');
