@@ -35,7 +35,7 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 use App\Http\Controllers\StudentController;
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth','preventBackHistory']], function() {
 Route::get('welcome', [StudentController::class, 'welcome'])->name('welcome');
 
 });
@@ -49,3 +49,20 @@ use App\Http\Controllers\ResetPasswordController;
 
 Route::get('reset-password/{token}', [ResetPasswordController::class, 'getPassword'])->name('resetlink');
 Route::post('reset-password', [ResetPasswordController::class, 'updatePassword'])->name('resetpassword');
+
+
+use App\Http\Controllers\AdminController;
+
+Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::post('admin/login', [AdminController::class, 'login'])->name('admin.login');
+Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+use App\Http\Controllers\AjaxStudentController;
+
+Route::group(['prefix' => 'admin','middleware' => ['auth.admin','preventBackHistory']], function ()
+{
+	Route::get('home', [AdminController::class, 'home'])->name('admin.home');
+	Route::get('getAjaxStudentList', [AjaxStudentController::class, 'index'])->name('student.list');
+
+	Route::get('ajaxStudentMassDelete', [AjaxStudentController::class, 'massDelete'])->name('student.deleteall');
+});
