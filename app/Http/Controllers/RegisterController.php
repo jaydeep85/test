@@ -33,7 +33,7 @@ class RegisterController extends Controller
         $profilePhoto = '';
         if($files = $request->file('photo'))
         {
-            $destinationPath = 'photo/';
+            $destinationPath = '/photo';           
             $profilePhoto = date('YmdHis') . "." . $files->getClientOriginalExtension();
             $files->move($destinationPath, $profilePhoto);
         }

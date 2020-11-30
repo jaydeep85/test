@@ -33,7 +33,7 @@
 	  </tr>
 	  <tr>
 	    <th>Photo:</th>
-	    <td><img src="{{ asset('photo/'.$getData['image']) }}" width="50px;"></td>
+	    <td><img src="{{ asset('photo')}}/{{$getData['image'] }}" width="50px;"></td>
 	  </tr>
 	</table>
 	<a href="{{ URL::previous() }}">Go Back</a>
