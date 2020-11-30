@@ -66,4 +66,5 @@ Route::group(['prefix' => 'admin','middleware' => ['auth.admin','preventBackHist
 
 	Route::get('ajaxStudentView/{id}', [AjaxStudentController::class, 'view'])->name('student.view');
 	Route::get('ajaxStudentMassDelete', [AjaxStudentController::class, 'massDelete'])->name('student.deleteall');
+	Route::get('ajaxStudentDelete/{id}', [AjaxStudentController::class, 'delete'])->name('student.delete');
 });
